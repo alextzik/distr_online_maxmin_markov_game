@@ -2,6 +2,11 @@
 
 This repository contains the developed code for the paper submitted to NeurIPS 2023
 
+## Overview of Proposed Method
+![](https://github.com/alextzik/distr_online_maxmin_markov_game/blob/main/GIFs/OverviewProposedMethod.png)
+
+## Code Structure
+
 The structure of the code is as follows:
 * ```main.py```
   * Runs the main simulation loop
@@ -21,13 +26,13 @@ The structure of the code is as follows:
   * Used to plot the results obtained after running ```main.py```
   * The user needs to specify the results directory in line 26 and the methods to be plotted in line 25
 
-# Results
+## Results
 
 Below we provide trajectory animations for the results pertaining to Figure 1 of the paper.
 In the following figures 'C' denotes the current relative state and 'G' the goal relative state in the desired formation between the agents that are connected by the edge. 
-## Proposed algorithm 
+### Proposed algorithm 
 ![h](https://github.com/alextzik/decentralized_mcts/blob/comp_with_liu_jia/GIFs/proposed.gif)
-## Optimal action sequence 
+### Optimal action sequence 
 ![h](https://github.com/alextzik/decentralized_mcts/blob/comp_with_liu_jia/GIFs/cvxpy.gif)
 
 
