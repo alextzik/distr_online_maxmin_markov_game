@@ -28,7 +28,7 @@ The structure of the code is as follows:
 
 ## Results
 
-Below we provide trajectory animations for the results pertaining to Figure 1 of the paper.
+Below we provide trajectory animations for the results pertaining to Figure 1 of the paper. Also available in the folder /GIFs
 In the following figures 'C' denotes the current relative state and 'G' the goal relative state in the desired formation between the agents that are connected by the edge. 
 ### Proposed algorithm 
 ![h](https://github.com/alextzik/decentralized_mcts/blob/comp_with_liu_jia/GIFs/proposed.gif)
