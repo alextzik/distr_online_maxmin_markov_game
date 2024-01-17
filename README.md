@@ -1,6 +1,6 @@
 # Distributed Online Planning for Min-Max Problems in Networked Markov Games
 
-This repository contains the developed code for the paper submitted to NeurIPS 2023
+This repository contains the developed code for the paper submitted to the IEEE Robotics and Automation Letters.
 
 ## Overview of Proposed Method
 ![](https://github.com/alextzik/distr_online_maxmin_markov_game/blob/main/GIFs/OverviewProposedMethod.png)
