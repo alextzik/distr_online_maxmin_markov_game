@@ -39,7 +39,7 @@ def calc_reward(current_states, desired_states, agents, fully_connected = False)
     return reward
 
 
-def distr_optimization(function_list):
+def distr_optimization(function_list, W):
     """
     Performs the distributed optimization for the min-max problem, given a list of functions that represent the neighborhood cost
     :param function_list: list of functions (CVX_Approximator instances)
@@ -68,12 +68,12 @@ def distr_optimization(function_list):
             if i < num_agents:
                 idcs_1 = [i +_*num_agents for _ in range(num_agents)]
                 idcs_2 = [num_agents*num_agents + i + _*num_agents for _ in range(num_agents)]
-                proposed_action_and_values[idcs_1, 0] = P.W @ prev_proposed_action_and_values[idcs_1, 0]
-                proposed_action_and_values[idcs_2, 0] = P.W @ prev_proposed_action_and_values[idcs_2, 0]
+                proposed_action_and_values[idcs_1, 0] = W @ prev_proposed_action_and_values[idcs_1, 0]
+                proposed_action_and_values[idcs_2, 0] = W @ prev_proposed_action_and_values[idcs_2, 0]
 
             else:
                 idcs = [num_agents*num_agents*2+_ for _ in range(num_agents)]
-                proposed_action_and_values[idcs, 0] = P.W @ prev_proposed_action_and_values[idcs, 0]
+                proposed_action_and_values[idcs, 0] = W @ prev_proposed_action_and_values[idcs, 0]
 
         # STEP 2: Step toward minimizing own penalty function through a two-step adjustment
         j = 2*num_agents

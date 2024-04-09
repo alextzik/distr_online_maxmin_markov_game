@@ -8,9 +8,10 @@ import os
 """
     This function saves an image of the current agent locations and their desired and goal distances
 """
-def plot_agents(agent_states, step, algo):
+def plot_agents(agent_states, step, algo, graph):
     eps = 0.1
     plt.figure()
+    plt.title(graph)
     for aa in range(agent_states.shape[1]):
         plt.plot(agent_states[0, aa], agent_states[1, aa], marker='o', markersize=20)
         plt.text(agent_states[0, aa]+eps, agent_states[1, aa]+eps, f"{aa}")

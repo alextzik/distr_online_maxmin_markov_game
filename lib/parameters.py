@@ -14,12 +14,18 @@ import networkx as nx
 ########################################################################
 # Dictates the communication topology and the agents each agent's MCTS involves
 nodes = [0, 1, 2, 3, 4] # 0 to n-1
-edges = [(0, 1), (1, 3), (3, 4), (0, 2), (2, 4), (3, 2),  (0, 4), (1, 2), (0, 3)]
-G = nx.Graph()
-G.add_nodes_from(nodes)
-G.add_edges_from(edges)
-laplacian = nx.laplacian_matrix(G).toarray()
+edges_full = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+edges_cycl = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 0)]
 
+G_full = nx.Graph()
+G_full.add_nodes_from(nodes)
+G_full.add_edges_from(edges_full)
+laplacian_full = nx.laplacian_matrix(G_full).toarray()
+
+G_cycl = nx.Graph()
+G_cycl.add_nodes_from(nodes)
+G_cycl.add_edges_from(edges_cycl)
+laplacian_cycl = nx.laplacian_matrix(G_cycl).toarray()
 ########################################################################
 # STATE SPACE
 # ########################################################################
@@ -85,26 +91,31 @@ ref_frame_length = 100
 # Doubly stochastic matrix for distributed optimization that satisfies with 0 value for non-neighboring agents
 # https://people.duke.edu/~ccc14/bios-821-2017/scratch/Python07A.html
 # W = np.random.uniform(0.05, 1.0, (len(nodes), len(nodes)))
-# W = np.multiply(W, nx.adjacency_matrix(G).toarray() + np.diag([1.0 for _ in range(len(nodes))]))
-#
+# W = np.multiply(W, nx.adjacency_matrix(G_cycl).toarray() + np.diag([1.0 for _ in range(len(nodes))]))
+
 # rsum = None
 # csum = None
-#
+
 # while (np.any(rsum != 1)) | (np.any(csum != 1)):
 #     W /= W.sum(0)
 #     W = W / W.sum(1)[:, np.newaxis]
 #     rsum = W.sum(1)
 #     csum = W.sum(0)
-#
+
 # print(W)
 NUM_ITERATIONS_PER_STEP = 1000
 
-W = np.array([[0.21292963, 0.3203916,  0.1658977,  0.1291315,  0.17164957],
- [0.31445902, 0.20252932, 0.21113819, 0.27187347, 0.        ],
- [0.16527396, 0.262745,   0.03941108, 0.20046218, 0.33210778],
- [0.11098306, 0.21433408, 0.28928935, 0.15917713, 0.22621638],
- [0.19635433, 0.,         0.29426367, 0.23935572, 0.27002627]])
+W_full = np.array([[0.55901448, 0.0877849,  0.14932374, 0.20387688, 0.        ],
+ [0.24487056, 0.08614041, 0.18714822, 0.10801737, 0.37382344],
+ [0.15184044, 0.20077562, 0.13462882, 0.17334824, 0.33940688],
+ [0.04427453, 0.45354986, 0.04244017, 0.25934088, 0.20039456],
+ [0.,         0.17174921, 0.48645904, 0.25541663, 0.08637511]])
 
+W_cycl = np.array([[0.45607027, 0.27197703, 0.,         0.,         0.2719527],
+ [0.18496217, 0.47759681, 0.33744102, 0.,         0.        ],
+ [0.,         0.25042616, 0.26403104, 0.4855428,  0.        ],
+ [0.,         0.,         0.39852794, 0.06273178, 0.53874029],
+ [0.35896756, 0.,         0.,         0.45172542, 0.18930702]])
 
 r = [2.0 for _ in range(len(nodes))]
 ########################################################################

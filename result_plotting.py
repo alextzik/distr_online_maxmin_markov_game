@@ -10,6 +10,8 @@ import pickle
 
 import numpy as np
 import matplotlib.pyplot as plt
+plt.rcParams["font.family"] = "Times New Roman"
+plt.rcParams.update({'font.size': 20})
 
 import lib.parameters as P
 
@@ -23,7 +25,8 @@ AGENT_COLORS = ["#820000", # digital red dark
                 ]
 
 METHODS = ["dec_baseline_only_POMDP", "dec_baseline_cvxpy", "dec_baseline_roll", "dec_mcts_maxmin"]
-LOG = "20230427154214" # Change to desired log file
+# METHODS = ["dec_mcts_maxmin"]
+LOG = "20240407222913" # Change to desired log file
 
 plot_format = {}
 for method in METHODS:
@@ -60,20 +63,21 @@ def main():
 
     log_dir = os.path.join(file_dir,"log",LOG)
 
-    plot_per_neighborhood(log_dir, "rewards_per_neighb", ylim=None)
+    plot_per_neighborhood(log_dir, "rewards_per_neighb", ylim=-650)
 
-    plot_regret(log_dir, "rewards_per_neighb", ylim=None)
+    # plot_regret(log_dir, "rewards_per_neighb", ylim=None)
 
     plt.show()
 
 
 def plot_per_neighborhood(log_dir, which, ylim=None):
-    graph = P.G
     fig = plt.figure(figsize=(11,6))
 
     titles = {}
     titles["rewards_per_neighb"] = "Agent Instantaneous Rewards"
 
+    agents_per_method = [3, 3, 3, 1]
+    idx = 0
     for method in METHODS:
         filename = os.path.join(log_dir,method,"avg_"+which+".csv")
         data_avg = np.loadtxt(filename, delimiter=",")
@@ -91,28 +95,37 @@ def plot_per_neighborhood(log_dir, which, ylim=None):
             std = np.std(data_agent, axis=0)
 
             print("Neighborhood of " + str(aa + 1) + " Reward - " + method + " : ", np.sum(data_avg[aa][:STEPS]))
-            plt.subplot(2, num_figrows, int(aa + 1))
-            plt.plot(range(STEPS), data_avg[aa][:STEPS],
-                     label=plot_format[method]["label"],
-                     color=plot_format[method]["color"],
-                     linestyle=plot_format[method]["ls"],
-                     )
-            plt.fill_between(range(STEPS), data_avg[aa][:STEPS]-std[:STEPS], data_avg[aa][:STEPS]+std[:STEPS], color=plot_format[method]["color_std"])
+            # plt.subplot(2, num_figrows, int(aa + 1))
+        plt.plot(range(STEPS), data_avg[agents_per_method[idx]][:STEPS],
+                    label=plot_format[method]["label"],
+                    color=plot_format[method]["color"],
+                    linestyle=plot_format[method]["ls"],
+                    )
+            # plt.fill_between(range(STEPS), data_avg[aa][:STEPS]-std[:STEPS], data_avg[aa][:STEPS]+std[:STEPS], color=plot_format[method]["color_std"])
 
-    for aa in range(data_avg.shape[0]):
-        plt.subplot(2,num_figrows,int(aa+1))
-        plt.title("Agent " + str(aa + 1))
-        plt.xlabel('Timestep')
-        plt.ylabel("instantaneous reward")
-        plt.xlim(0,STEPS)
-        plt.ylim(-100, 5)
-        if ylim != None:
-            plt.ylim(ylim)
+        idx += 1
+    # for aa in range(data_avg.shape[0]):
+    #     plt.subplot(2,num_figrows,int(aa+1))
+    #     plt.title("Agent " + str(aa + 1))
+    #     plt.xlabel('Timestep')
+    #     plt.ylabel("instantaneous reward")
+    #     plt.xlim(0,STEPS)
+    #     plt.ylim(-100, 5)
+    #     if ylim != None:
+    #         plt.ylim(ylim)
+            
+
+    plt.xlabel('timestep')
+    plt.ylabel("instantaneous reward")
+    plt.xlim(0,STEPS)
+    plt.ylim(-100, 5)
+    if ylim != None:
+        plt.ylim(ylim)
 
     # plt.suptitle(titles[which])
 
     plt.tight_layout()
-    plt.legend()
+    plt.legend(loc=4)
 
     fig.savefig(os.path.join(log_dir,which+"_average.eps"),
                 dpi=300.,
