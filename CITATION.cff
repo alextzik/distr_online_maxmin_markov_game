@@ -38,26 +38,26 @@ repository-code: >-
 Preferred-citation:
 type: software
 authors:
-  	- given-names: Alexandros
-    	  family-names: Tzikas
-    	  email: alextzik@stanford.edu
-    	  affiliation: Stanford University
-    	  orcid: 'https://orcid.org/0000-0002-3003-4880'
-  	- given-names: Jinkyoo
-    	  family-names: Park
-    	  email: jinkyoo.park@kaist.ac.kr
-    	  affiliation: KAIST
-    	  orcid: 'https://orcid.org/0000-0003-2620-1479'
-  	- given-names: Mykel
-    	  family-names: Kochenderfer
-    	  email: mykel@stanford.edu
-    	  affiliation: Stanford University
-    	  orcid: 'https://orcid.org/0000-0002-7238-9663'
-  	- given-names: Ross
-    	  family-names: Allen
-    	  orcid: 'https://orcid.org/0000-0003-3730-641X'
-    	  affiliation: MIT Lincoln Lab
-    	  email: ross.allen@ll.mit.edu
+  - given-names: Alexandros
+    family-names: Tzikas
+    email: alextzik@stanford.edu
+    affiliation: Stanford University
+    orcid: 'https://orcid.org/0000-0002-3003-4880'
+  - given-names: Jinkyoo
+    family-names: Park
+    email: jinkyoo.park@kaist.ac.kr
+    affiliation: KAIST
+    orcid: 'https://orcid.org/0000-0003-2620-1479'
+  - given-names: Mykel
+    family-names: Kochenderfer
+    email: mykel@stanford.edu
+    affiliation: Stanford University
+    orcid: 'https://orcid.org/0000-0002-7238-9663'
+  - given-names: Ross
+    family-names: Allen
+    orcid: 'https://orcid.org/0000-0003-3730-641X'
+    affiliation: MIT Lincoln Lab
+    email: ross.allen@ll.mit.edu
 doi: "10.1109/LRA.2024.3409028"
 journal: "IEEE Robotics and Automation Letters"
 title: "Distributed Online Planning for Min-Max Problems in Networked Markov Games"
