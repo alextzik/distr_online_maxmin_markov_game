@@ -36,8 +36,8 @@ identifiers:
 repository-code: >-
   https://github.com/alextzik/distr_online_maxmin_markov_game
 Preferred-citation:
-	type: software
-	authors:
+type: software
+authors:
   	- given-names: Alexandros
     	  family-names: Tzikas
     	  email: alextzik@stanford.edu
@@ -58,9 +58,9 @@ Preferred-citation:
     	  orcid: 'https://orcid.org/0000-0003-3730-641X'
     	  affiliation: MIT Lincoln Lab
     	  email: ross.allen@ll.mit.edu
-	doi: "10.1109/LRA.2024.3409028"
-	journal: "IEEE Robotics and Automation Letters"
-	title: "Distributed Online Planning for Min-Max Problems in Networked Markov Games"
-	year: 2024
+doi: "10.1109/LRA.2024.3409028"
+journal: "IEEE Robotics and Automation Letters"
+title: "Distributed Online Planning for Min-Max Problems in Networked Markov Games"
+year: 2024
 
 
